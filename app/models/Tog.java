@@ -2,7 +2,6 @@ package models;
 
 import org.codehaus.jackson.JsonNode;
 
-import java.util.Date;
 import java.util.Iterator;
 
 import org.joda.time.DateTime;
@@ -18,32 +17,48 @@ import org.joda.time.Interval;
 public class Tog {
     private static String RETNINGAVGANG =  "\"2\"";
     private static String RETNINGANKOMST= "\"1\"";
+
     public String avgang;
     public String ankomst;
     public String temptekst;
+    public JsonNode sanntidJson;
+
     public Tog(JsonNode sanntid){
+        sanntidJson = sanntid;
+
+        avgang ="";
+        ankomst = "";
 
         Iterator<JsonNode> ite = sanntid.getElements();
-          avgang ="";
-          ankomst = "";
-        temptekst= new org.joda.time.DateTime().toString()       ;
+
         while (ite.hasNext()) {
             JsonNode temp = ite.next();
-            temptekst +=  " " + temp.path("DirectionRef").toString();
+
             if(avgang.equals("") && temp.path("DirectionRef").toString().equals(RETNINGAVGANG)){
-                avgang = "" + getInterval(temp).toPeriod().getMinutes();
+                avgang = getMinutterTilAvgang(temp);
             } else if(ankomst.equals("")) {
-                ankomst ="" +  getInterval(temp).toPeriod().getMinutes();
+                ankomst = getMinutterTilAvgang(temp);
             }
+
          }
     }
 
-    private Interval getInterval(JsonNode temp) {
-        DateTime naa = new org.joda.time.DateTime() ;
-        String date = temp.path("ExpectedArrivalTime").asText();
-        DateTime parsed = new DateTime(Long.parseLong(date.substring(6,date.length() - 7)));
+    private String getMinutterTilAvgang(JsonNode temp) {
+        try{
+            DateTime naa = new org.joda.time.DateTime() ;
+            String date = temp.path("ExpectedArrivalTime").asText();
+            DateTime parsed = new DateTime(Long.parseLong(date.substring(6,date.length() - 7)));
+            return "" + getIntervalIMinutter(new Interval(naa,parsed));
 
-        return new Interval(naa,parsed);
+        }   catch (Exception e){
+            return "" + getIntervalIMinutter(new Interval(0,0));
+        }
+
+    }
+
+    private int getIntervalIMinutter(Interval interval){
+        return interval.toPeriod().toStandardMinutes().getMinutes()  ;
+
     }
 
 }

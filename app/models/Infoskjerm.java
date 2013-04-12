@@ -13,10 +13,12 @@ public class Infoskjerm {
 
 
     public Tog tog;
+    public Vaermelding vaermelding;
 
-    public Infoskjerm(Tog tog ){
+
+    public Infoskjerm(Tog tog, Vaermelding vaermelding ){
         this.tog = tog;
-
+        this.vaermelding = vaermelding;
 
     }
 
