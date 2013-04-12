@@ -31,19 +31,19 @@ public class Tog {
             JsonNode temp = ite.next();
             temptekst +=  " " + temp.path("DirectionRef").toString();
             if(avgang.equals("") && temp.path("DirectionRef").toString().equals(RETNINGAVGANG)){
-                avgang = "" + getInterval(temp);//.toPeriod().getMinutes();
+                avgang = "" + getInterval(temp).toPeriod().getMinutes();
             } else if(ankomst.equals("")) {
-                ankomst ="" +  getInterval(temp);//.toPeriod().getMinutes();
+                ankomst ="" +  getInterval(temp).toPeriod().getMinutes();
             }
          }
     }
 
-    private /*Interval*/ String getInterval(JsonNode temp) {
+    private Interval getInterval(JsonNode temp) {
         DateTime naa = new org.joda.time.DateTime() ;
         String date = temp.path("ExpectedArrivalTime").asText();
         DateTime parsed = new DateTime(Long.parseLong(date.substring(6,date.length() - 7)));
 
-        return parsed.toString();//new Interval(naa,parsed);
+        return new Interval(naa,parsed);
     }
 
 }
