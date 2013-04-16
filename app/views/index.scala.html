@@ -1,6 +1,7 @@
 @(infoskjerm: Infoskjerm)
 
 @import helper._
+@import scala.collection.SortedSet
 
 @main("Infoskjerm") {
 <h1>Toginformasjon</h1>
@@ -11,7 +12,7 @@
 @if(infoskjerm.vaermelding.varselFraIdag) {
 <h1>Dagens Værmelding</h1>
 } else {
-<h1>Værmelding for i morgen</h1>
+<h2>Værmelding for i morgen</h2>
 }
 
 
@@ -20,8 +21,20 @@
 <span>Symbol for dagen: @infoskjerm.vaermelding.vaerSymbol<br/>  </span>
 <h2>Dagtid:  @infoskjerm.vaermelding.dagTemperatur Celsius</h2>
 <span>natt:@infoskjerm.vaermelding.nattTemperatur  morgen:@infoskjerm.vaermelding.morgenTemperatur kveld: :@infoskjerm.vaermelding.kveldsTemperatur </span>
+<hr/>
 
+<h1>Kalender</h1>
+        <h2>I dag</h2>
+<ul>
+    @for(event <-  infoskjerm.kalender.eventerIdag) {
+    <li>@event.printDato() @event.tittel </li>
+    }
+</ul>
+<h2>andre dager</h2>
+<ul>
 
+    @Html(infoskjerm.kalender.printEventer())
 
+</ul>
 
                  }

@@ -10,8 +10,8 @@ public class Application extends Controller {
 
     public static Result index() {
 
-        String ole = "";
-        return ok(views.html.index.render(new Infoskjerm(new Tog(Tjenester.hentSanntidsinformasjon()), new Vaermelding(Tjenester.hentVaermelding()))));
+        Infoskjerm infoskjerm =   new Infoskjerm(new Tog(Tjenester.hentSanntidsinformasjon()), new Vaermelding(Tjenester.hentVaermelding()),new Kalender(Tjenester.hentKalender()));
+        return ok(views.html.index.render(infoskjerm));
 
     }
 

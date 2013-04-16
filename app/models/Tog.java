@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
+import play.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -48,9 +49,12 @@ public class Tog {
             DateTime naa = new org.joda.time.DateTime() ;
             String date = temp.path("ExpectedArrivalTime").asText();
             DateTime parsed = new DateTime(Long.parseLong(date.substring(6,date.length() - 7)));
+            Logger.debug("toget går:" + parsed.toString() + "klokka er: " + naa.toString());
             return "" + getIntervalIMinutter(new Interval(naa,parsed));
 
         }   catch (Exception e){
+
+            Logger.debug(e.toString());
             return "" + getIntervalIMinutter(new Interval(0,0));
         }
 

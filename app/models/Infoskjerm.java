@@ -14,11 +14,13 @@ public class Infoskjerm {
 
     public Tog tog;
     public Vaermelding vaermelding;
+    public Kalender kalender;
 
 
-    public Infoskjerm(Tog tog, Vaermelding vaermelding ){
+    public Infoskjerm(Tog tog, Vaermelding vaermelding, Kalender kalender ){
         this.tog = tog;
         this.vaermelding = vaermelding;
+        this.kalender = kalender;
 
     }
 

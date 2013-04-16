@@ -29,7 +29,7 @@ public class Vaermelding {
         vaerXML = document;
 
         Node tabular =document.getElementsByTagName("tabular").item(0);
-        NodeList list = tabular.getChildNodes() ;
+
         NodeList nodeList =  tabular.getChildNodes();
         boolean  foersteElement = true;
         int  dagPeriode = 2;
@@ -72,15 +72,6 @@ public class Vaermelding {
 
 
     }
-    private static String getValue(String tag, Element element) {
-        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
-    }
-    private static String getAttribute(String tag, Element element) {
-        NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
-        Node node = (Node) nodes.item(0);
-        return node.getNodeValue();
-    }
+
 
 }
