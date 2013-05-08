@@ -11,7 +11,9 @@ object ApplicationBuild extends Build {
     // Add your project dependencies here,
     javaCore,
     javaJdbc,
-    javaEbean
+    javaEbean,
+    "org.apache.xmlgraphics" % "batik-transcoder" % "1.7",
+    "org.apache.xmlgraphics" % "batik-codec" % "1.7"
   )
 
   val main = play.Project(appName, appVersion, appDependencies).settings(
