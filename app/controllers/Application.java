@@ -17,7 +17,6 @@ import java.awt.Color;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.awt.image.BufferedImage;
-import java.awt.color.* ;
 import java.awt.color.ColorSpace;
 
 import java.awt.image.ColorConvertOp;
@@ -60,7 +59,7 @@ public class Application extends Controller {
 
             ostream = new ByteArrayOutputStream();    //("public/images/out.png");
             TranscoderOutput output = new TranscoderOutput(ostream );
-            TranscoderInput input = new TranscoderInput(new FileInputStream("public/images/skjermplain.svg"))  ;
+            TranscoderInput input = new TranscoderInput(Tjenester.getSVG());   //new FileInputStream("public/images/skjermplain.svg"))  ;
             t.addTranscodingHint(PNGTranscoder.KEY_BACKGROUND_COLOR, Color.white);
 
             t.transcode(input, output);

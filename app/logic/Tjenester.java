@@ -5,6 +5,8 @@ import org.w3c.dom.Document;
 import play.Logger;
 import play.cache.Cache;
 import play.libs.WS;
+import java.io.InputStream;
+
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,7 +36,7 @@ public class Tjenester {
     private static String KALENDER_URL = "https://www.google.com/calendar/feeds/fredoluno%40gmail.com/private-e461fa862b97c7b0b8553ed553a7414e/full";
 
 
-
+    private static String PUBLIC_SVG="https://dl.dropboxusercontent.com/u/53169381/skjermplain.svg";
 
 
 
@@ -62,6 +64,11 @@ public class Tjenester {
     public static Document hentKalender(){
         return WS.url(KALENDER_URL).get().get().asXml();
 
+    }
+
+    public static InputStream getSVG(){
+
+        return WS.url(PUBLIC_SVG).get().get().getBodyAsStream();
     }
 
     public static JsonNode hentNetatmoInne(){
