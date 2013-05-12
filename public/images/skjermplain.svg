@@ -30,7 +30,7 @@
      showgrid="false"
      inkscape:zoom="0.90971816"
      inkscape:cx="302.60024"
-     inkscape:cy="440.71272"
+     inkscape:cy="528.65205"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -58,7 +58,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -139,29 +139,34 @@
        y="394.91437"
        id="text5580-5"
        xml:space="preserve"
-       style="font-size:100px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"><tspan
+       style="font-size:100px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       sodipodi:linespacing="125%"><tspan
          x="255.64803"
          y="394.91437"
-         id="tspan5582-5">23</tspan></text>
+         id="tspan5582-5"
+         style="-inkscape-font-specification:Verdana;font-family:Verdana;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:90px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">23</tspan></text>
     <text
        x="365.64804"
        y="357.77151"
        id="text5584-1"
        xml:space="preserve"
-       style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"><tspan
+       style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       sodipodi:linespacing="125%"><tspan
          x="365.64804"
          y="357.77151"
-         id="tspan5586-7">°C</tspan></text>
+         id="tspan5586-7"
+         style="-inkscape-font-specification:Verdana;font-family:Verdana;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:48px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">°C</tspan></text>
     <text
        x="367.0766"
        y="389.20007"
        id="text5588-1"
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+       sodipodi:linespacing="125%"><tspan
          x="367.0766"
          y="389.20007"
          id="tspan5590-1"
-         style="font-size:28px">58%</tspan></text>
+         style="font-size:28px;-inkscape-font-specification:Verdana;font-family:Verdana;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">58%</tspan></text>
     <text
        x="532.12134"
        y="396.72971"
@@ -311,10 +316,11 @@
        y="483.44318"
        id="text5572-1-88"
        xml:space="preserve"
-       style="font-size:64px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"><tspan
+       style="font-size:64px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       sodipodi:linespacing="125%"><tspan
          x="168.22443"
          y="483.44318"
-         id="tspan5574-6-2">hva skjer</tspan></text>
+         id="tspan5574-6-2">hva skjera</tspan></text>
     <text
        x="439.74756"
        y="974.79822"
