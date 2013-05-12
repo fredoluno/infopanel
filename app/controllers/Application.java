@@ -2,6 +2,7 @@ package controllers;
 
 import logic.Tjenester;
 import models.*;
+import org.apache.batik.ext.awt.image.codec.imageio.PNGTranscoderImageIOWriteAdapter;
 import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
@@ -11,9 +12,18 @@ import play.Logger;
 import play.mvc.*;
 import play.api.Play;
 import scala.reflect.io.VirtualFile;
+import java.awt.Color;
 
 import java.io.*;
 import java.net.MalformedURLException;
+import java.awt.image.BufferedImage;
+import java.awt.color.* ;
+import java.awt.color.ColorSpace;
+
+import java.awt.image.ColorConvertOp;
+
+
+import javax.imageio.ImageIO;
 
 
 public class Application extends Controller {
@@ -51,9 +61,22 @@ public class Application extends Controller {
             ostream = new ByteArrayOutputStream();    //("public/images/out.png");
             TranscoderOutput output = new TranscoderOutput(ostream );
             TranscoderInput input = new TranscoderInput(new FileInputStream("public/images/skjermplain.svg"))  ;
+            t.addTranscodingHint(PNGTranscoder.KEY_BACKGROUND_COLOR, Color.white);
 
             t.transcode(input, output);
-            return ok(ostream.toByteArray()).as("image/png");
+
+
+
+            BufferedImage image = ImageIO.read(new ByteArrayInputStream(ostream.toByteArray()));
+            ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+            BufferedImage image2 = new BufferedImage(600,800, BufferedImage.TYPE_BYTE_GRAY );
+            colorConvert.filter(image, image2);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image2, "png",baos );
+            //InputStream is = new ByteArrayInputStream(baos.toByteArray());
+              //return ok("asdad");
+            return ok(baos.toByteArray()).as("image/png");
             //ostream.flush();
             //ostream.close();
 
