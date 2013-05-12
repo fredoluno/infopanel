@@ -25,12 +25,12 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1600"
-     inkscape:window-height="837"
+     inkscape:window-height="838"
      id="namedview95"
      showgrid="false"
      inkscape:zoom="0.90971816"
      inkscape:cx="302.60024"
-     inkscape:cy="440.71272"
+     inkscape:cy="396.74306"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -106,34 +106,30 @@
        y="394.91437"
        id="text5580"
        xml:space="preserve"
-       style="font-size:100px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       style="font-size:100px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
        sodipodi:linespacing="125%"><tspan
          x="34.285713"
          y="394.91437"
-         id="tspan5582"
-         style="-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:100px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">14</tspan></text>
+         id="tspan5582">14</tspan></text>
     <text
        x="144.28572"
        y="358.07648"
        id="text5584"
        xml:space="preserve"
-       style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       sodipodi:linespacing="125%"><tspan
+       style="font-size:48px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"><tspan
          x="144.28572"
          y="358.07648"
-         id="tspan5586"
-         style="-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:48px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">°C</tspan></text>
+         id="tspan5586">°C</tspan></text>
     <text
        x="145.71428"
        y="389.50504"
        id="text5588"
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr"
-       sodipodi:linespacing="125%"><tspan
+       style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
          x="145.71428"
          y="389.50504"
          id="tspan5590"
-         style="font-size:40px;-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">58%</tspan></text>
+         style="font-size:28px">58%</tspan></text>
     <text
        x="255.64803"
        y="394.91437"
