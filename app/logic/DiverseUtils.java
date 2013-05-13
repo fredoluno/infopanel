@@ -78,7 +78,7 @@ public class DiverseUtils {
 
     public  static String naa(){
            DateTime now = new DateTime();
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm:ss");
         return fmt.print(now);
     }
 
