@@ -5,6 +5,8 @@ import org.w3c.dom.Document;
 import play.Logger;
 import play.cache.Cache;
 import play.libs.WS;
+
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 
@@ -66,9 +68,14 @@ public class Tjenester {
 
     }
 
-    public static InputStream getSVG(){
+    public static String getSVG(){
 
-        return WS.url(PUBLIC_SVG).get().get().getBodyAsStream();
+        return WS.url(PUBLIC_SVG).get().get().getBody();
+
+
+
+
+
     }
 
     public static JsonNode hentNetatmoInne(){

@@ -6,6 +6,8 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import play.Logger;
 
+import java.util.Locale;
+
 /**
  * Created with IntelliJ IDEA.
  * User: fredrik hansen
@@ -30,12 +32,13 @@ public class KalenderEvent implements Comparable {
     public String printDato(){
 
         if(DiverseUtils.erIdag(eventStart)&&DiverseUtils.erIdag(eventSlutt)){
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm").withLocale(new Locale("nb"));
+
             return fmt.print(eventStart) + "-" + fmt.print(eventSlutt);
         }
         else if (DiverseUtils.erInnen7dager(eventSlutt)) {
             String dato = "";
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEEE");
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEEE").withLocale(new Locale("nb"));
 
             if (DiverseUtils.datoPassert(eventStart)) {
                 dato = "nå-" + fmt.print(eventSlutt);

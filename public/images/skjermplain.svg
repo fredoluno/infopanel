@@ -30,7 +30,7 @@
      showgrid="false"
      inkscape:zoom="0.90971816"
      inkscape:cx="302.60024"
-     inkscape:cy="528.65205"
+     inkscape:cy="396.74306"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -88,19 +88,23 @@
        y="313.79074"
        id="text5572"
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"><tspan
+       style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:orange juice;-inkscape-font-specification:orange juice"
+       sodipodi:linespacing="125%"><tspan
          x="30.000002"
          y="313.79074"
-         id="tspan5574">ute</tspan></text>
+         id="tspan5574"
+         style="-inkscape-font-specification:orange juice;font-family:orange juice;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:56px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">ute</tspan></text>
     <text
        x="242.85716"
        y="316.64789"
        id="text5576"
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"><tspan
+       style="font-size:56px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:orange juice;-inkscape-font-specification:orange juice"
+       sodipodi:linespacing="125%"><tspan
          x="242.85716"
          y="316.64789"
-         id="tspan5578">inne</tspan></text>
+         id="tspan5578"
+         style="-inkscape-font-specification:orange juice;font-family:orange juice;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:56px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">inne</tspan></text>
     <text
        x="34.285713"
        y="394.91437"
@@ -226,10 +230,12 @@
        y="879.56055"
        id="text5572-1"
        xml:space="preserve"
-       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"><tspan
+       style="font-size:64px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:orange juice;-inkscape-font-specification:orange juice"
+       sodipodi:linespacing="125%"><tspan
          x="26.333834"
          y="879.56055"
-         id="tspan5574-6">varsel i morgen</tspan></text>
+         id="tspan5574-6"
+         style="-inkscape-font-specification:orange juice;font-family:orange juice;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:64px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">varsel i morgen</tspan></text>
     <path
        d="m 94.779776,892.51386 v 22.6822 h 5.937504 v -22.6822 h -5.937504 z m -26.2447,6.4714 -5.0464,3.1464 11.9928,19.2394 5.0483,-3.1483 -11.9947,-19.2375 z m 58.782204,0.5947 -8.9661,16.2089 c -5.6734,1.2597 -10.9744,3.5435 -15.675,6.65 -1.6093,-0.2261 -3.258504,-0.3572 -4.928604,-0.3572 -20.2825,0 -36.6928,16.5205 -36.6928,36.8733 0,3.6993 0.5795,7.2675 1.6017,10.6267 -1.8582,2.3465 -3.3725,5.0198 -4.3928,7.8983 l -1.3072,-2.0197 -19.1178,12.0536 0.65322,1.0678 c -4.51554,4.4289 -7.30322,10.5659 -7.30322,17.33944 0,6.688 3.09605,12.2341 7.77822,15.3767 4.68198,3.1426 10.52619,4.2161 16.56458,4.2161 h 38.8911 5.937504 17.3375 33.9036 31.1125 c 21.185,0 38.475,-17.2862 38.475,-38.47504 0,-21.1888 -17.2881,-38.4161 -38.475,-38.4161 -3.0533,0 -5.9356,0.5016 -8.7286,1.1875 -5.4454,-20.1533 -23.5809,-35.15 -45.4214,-35.15 -0.9481,0 -1.8563,0.0646 -2.7911,0.1197 l 6.7697,-12.2911 -5.225,-2.9089 z m -84.610804,21.6125 -2.90947,5.225 19.7733,10.9839 2.85,-5.225 -19.7144,-10.9839 z m 85.857204,2.5536 c 19.1672,0 34.8061,14.0163 37.7036,32.3589 l 0.8892,5.5214 5.225,-1.9589 c 3.2946,-1.2502 6.7222,-2.0197 10.3322,-2.0197 16.302,0 29.45,13.091 29.45,29.3911 0,16.30014 -13.1499,29.45004 -29.45,29.45004 h -31.1125 -33.9036 -62.166104 c -4.8944,0 -9.0383,-1.007 -11.5178,-2.6714 -2.4795,-1.6644 -3.8,-3.6518 -3.8,-7.8964 0,-8.47974 6.82974,-15.26084 15.3178,-15.26084 1.406,0 2.8234,0.2432 4.3947,0.7125 l 5.8197,1.7822 v -6.1161 c 0,-0.5472 0.0133,-0.8702 0,-0.95 0.2527,-10.0738 8.3828,-18.05 18.525,-18.05 -0.1482,0 0.2242,0.0494 1.2464,0.1178 l 5.0464,0.3572 -0.2375,-5.0464 c -0.0551,-1.2369 -0.1197,-1.6549 -0.1197,-1.3661 0,-21.2382 17.103804,-38.3553 38.357204,-38.3553 z m -97.375004,30.5178 v 5.9375 h 22.6214 v -5.9375 h -22.6214 z"
        id="path5763" />
@@ -316,11 +322,12 @@
        y="483.44318"
        id="text5572-1-88"
        xml:space="preserve"
-       style="font-size:64px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+       style="font-size:72px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:orange juice;-inkscape-font-specification:orange juice"
        sodipodi:linespacing="125%"><tspan
          x="168.22443"
          y="483.44318"
-         id="tspan5574-6-2">hva skjera</tspan></text>
+         id="tspan5574-6-2"
+         style="-inkscape-font-specification:orange juice;font-family:orange juice;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:72px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%">hva skjera</tspan></text>
     <text
        x="439.74756"
        y="974.79822"

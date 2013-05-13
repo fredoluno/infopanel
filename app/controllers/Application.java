@@ -1,5 +1,6 @@
 package controllers;
 
+import logic.DiverseUtils;
 import logic.Tjenester;
 import models.*;
 import org.apache.batik.ext.awt.image.codec.imageio.PNGTranscoderImageIOWriteAdapter;
@@ -30,41 +31,32 @@ public class Application extends Controller {
 
     public static Result index() {
 
-        Tog tog = new Tog(Tjenester.hentSanntidsinformasjon());
-        Vaermelding vaermelding =   new Vaermelding(Tjenester.hentVaermelding());
-        Kalender kalender = new Kalender(Tjenester.hentKalender());
-        Vaerstasjon vaerstasjon = new Vaerstasjon(Tjenester.hentNetatmoInne(),Tjenester.hentNetatmoUte());
-        Infoskjerm infoskjerm =   new Infoskjerm(tog,vaermelding ,kalender,vaerstasjon);
+        Infoskjerm infoskjerm = getInfoskjerm();
         return ok(views.html.index.render(infoskjerm));
 
     }
 
+    private static Infoskjerm getInfoskjerm() {
+        Tog tog = new Tog(Tjenester.hentSanntidsinformasjon());
+        Vaermelding vaermelding =   new Vaermelding(Tjenester.hentVaermelding());
+        Kalender kalender = new Kalender(Tjenester.hentKalender());
+        Vaerstasjon vaerstasjon = new Vaerstasjon(Tjenester.hentNetatmoInne(),Tjenester.hentNetatmoUte());
+        return new Infoskjerm(tog,vaermelding ,kalender,vaerstasjon);
+    }
+
 
     public static Result bilde() throws IOException {
-        // Create a JPEG transcoder
 
-
-        // Set the transcoding hints.
-       // t.addTranscodingHint(PN);
-        //t.addTranscodingHint(PNGTranscoder.KEY_QUALITY,
-          //      new Float(.8));
-
-        // Create the transcoder input.
-
-
-        String svgURI = null;
         try {
             PNGTranscoder t = new PNGTranscoder();
             ByteArrayOutputStream ostream ;
 
             ostream = new ByteArrayOutputStream();    //("public/images/out.png");
             TranscoderOutput output = new TranscoderOutput(ostream );
-            TranscoderInput input = new TranscoderInput(Tjenester.getSVG());   //new FileInputStream("public/images/skjermplain.svg"))  ;
+            TranscoderInput input = new TranscoderInput(DiverseUtils.fyllBilde(Tjenester.getSVG(), getInfoskjerm()));   //new FileInputStream("public/images/skjermplain.svg"))  ;
             t.addTranscodingHint(PNGTranscoder.KEY_BACKGROUND_COLOR, Color.white);
 
             t.transcode(input, output);
-
-
 
             BufferedImage image = ImageIO.read(new ByteArrayInputStream(ostream.toByteArray()));
             ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
@@ -73,11 +65,8 @@ public class Application extends Controller {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(image2, "png",baos );
-            //InputStream is = new ByteArrayInputStream(baos.toByteArray());
-              //return ok("asdad");
+
             return ok(baos.toByteArray()).as("image/png");
-            //ostream.flush();
-            //ostream.close();
 
         } catch (Exception e) {
             Logger.debug(e.toString());

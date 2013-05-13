@@ -45,4 +45,6 @@ public class Vaerstasjon {
 
         return        text.replaceAll("\\]","").replaceAll("\\[","") ;
     }
+
+
 }

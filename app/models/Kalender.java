@@ -22,12 +22,14 @@ public class Kalender {
 
     public TreeSet<KalenderEvent> eventer;
     public TreeSet<KalenderEvent> eventerIdag;
+    public TreeSet<KalenderEvent> eventerKomplett;
     KalenderEvent kalenderEvent;
 
     public Kalender(Document document){
 
         eventer = new TreeSet<KalenderEvent>();
         eventerIdag = new TreeSet<KalenderEvent>();
+        eventerKomplett = new TreeSet<KalenderEvent>();
 
 
         NodeList kalenderEntry =document.getElementsByTagName("entry");
@@ -50,12 +52,14 @@ public class Kalender {
 
                 Logger.debug(event.tittel +"s " + event.eventStart + "sl " + event.eventSlutt);
                 if(!DiverseUtils.datoPassert(event.eventSlutt)){
+                    eventerKomplett.add(event);
                     if(DiverseUtils.erIdag(event.eventStart,event.eventSlutt))  {
                         eventerIdag.add(event);
                     }
                     else{
                         eventer.add(event);
                     }
+
 
                 }
 

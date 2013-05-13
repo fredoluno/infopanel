@@ -66,10 +66,11 @@ public class Vaermelding {
 
             }
         }
+    }
 
-
-
-
+    public String getVarselTittel(){
+        if(varselFraIdag) return "varsel i dag";
+        return "varsel i morgen";
 
     }
 
