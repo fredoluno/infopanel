@@ -21,6 +21,8 @@ import java.awt.image.BufferedImage;
 import java.awt.color.ColorSpace;
 
 import java.awt.image.ColorConvertOp;
+import java.text.DateFormat;
+import java.util.Locale;
 
 
 import javax.imageio.ImageIO;
@@ -36,6 +38,8 @@ public class Application extends Controller {
 
     }
 
+
+
     private static Infoskjerm getInfoskjerm() {
         Tog tog = new Tog(Tjenester.hentSanntidsinformasjon());
         Vaermelding vaermelding =   new Vaermelding(Tjenester.hentVaermelding());
@@ -44,7 +48,14 @@ public class Application extends Controller {
         return new Infoskjerm(tog,vaermelding ,kalender,vaerstasjon);
     }
 
-
+    public static Result locale() throws IOException{
+        String lo = "";
+        Locale list[] = DateFormat.getAvailableLocales();
+        for (Locale aLocale : list) {
+            lo = lo +"\n" + aLocale.toString();
+        }
+        return ok(lo);
+    }
     public static Result bilde() throws IOException {
 
         try {
