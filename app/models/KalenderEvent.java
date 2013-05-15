@@ -32,13 +32,13 @@ public class KalenderEvent implements Comparable {
     public String printDato(){
 
         if(DiverseUtils.erIdag(eventStart)&&DiverseUtils.erIdag(eventSlutt)){
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm").withLocale(new Locale("nb","NO"));
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm").withLocale(new Locale("no","NO"));
 
             return fmt.print(eventStart) + "-" + fmt.print(eventSlutt);
         }
         else if (DiverseUtils.erInnen7dager(eventSlutt)) {
             String dato = "";
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEEE").withLocale(new Locale("nb","NO"));
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("EEEE").withLocale(new Locale("no","NO"));
 
             if (DiverseUtils.datoPassert(eventStart)) {
                 dato = "nå-" + fmt.print(eventSlutt);
