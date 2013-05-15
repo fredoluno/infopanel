@@ -46,7 +46,7 @@ public class Kalender {
                 NodeList list1 = element.getElementsByTagName("gd:when") ;
                 Element naar = (Element)element.getElementsByTagName("gd:when").item(0) ;
                 if (naar != null){
-                    event.eventStart = new DateTime(naar.getAttribute("startTime"));
+                    event.eventStart = new DateTime(naar.getAttribute("startTime")).with;
                     event.eventSlutt = new DateTime(naar.getAttribute("endTime"));
                 }
 

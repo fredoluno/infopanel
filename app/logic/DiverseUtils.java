@@ -9,11 +9,13 @@ import org.joda.time.format.DateTimeFormatter;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import play.cache.Cache;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.TreeSet;
+import java.util.logging.Logger;
 
 public class DiverseUtils {
     public static String hentVerdi(String tag, Element element) {
@@ -86,28 +88,42 @@ public class DiverseUtils {
     public static InputStream fyllBilde(String bilde, Infoskjerm infoskjerm)
     {
         try{
+ //           Integer teller = (Integer) Cache.get("vaer");
+ //           if(teller == null || teller.intValue()>24)
+ //           {
+ //               teller = new Integer(1);
+ //           }
             bilde = bilde.replaceAll("@@OPPDATERT@@", DiverseUtils.naa());
-            bilde = bilde.replaceAll("@@INNETEMP@@",left(infoskjerm.vaerstasjon.inneTemperatur,".")) ;
+            bilde = bilde.replaceAll("@@INNETEMP@@",left(infoskjerm.vaerstasjon.inneTemperatur, ".")) ;
             bilde = bilde.replaceAll("@@UTETEMP@@", left(infoskjerm.vaerstasjon.uteTemperatur,"."));
             bilde = bilde.replaceAll("@@INNEFUKTIGHET@@", infoskjerm.vaerstasjon.inneFuktighet);
             bilde = bilde.replaceAll("@@UTEFUKTIGHETT@@", infoskjerm.vaerstasjon.uteFuktighet);
-            bilde = bilde.replaceAll("@@LYD@@", infoskjerm.vaerstasjon.lyd);
-            bilde = bilde.replaceAll("@@TRYKK@@",infoskjerm.vaerstasjon.trykk);
-            bilde = bilde.replaceAll("@@CO2@@", infoskjerm.vaerstasjon.co2);
-            bilde = bilde.replaceAll("@@AVGANG@@", infoskjerm.tog.avgang);
-            bilde = bilde.replaceAll("@@VARSELDAG@@", infoskjerm.vaermelding.dagTemperatur);
-            bilde = bilde.replaceAll("@@VARSELNATT@@", infoskjerm.vaermelding.nattTemperatur);
-            bilde = bilde.replaceAll("@@VARSELMORGEN@@", infoskjerm.vaermelding.morgenTemperatur);
+            bilde = bilde.replaceAll("@@LYD@@",         infoskjerm.vaerstasjon.lyd);
+            bilde = bilde.replaceAll("@@TRYKK@@",       infoskjerm.vaerstasjon.trykk);
+            bilde = bilde.replaceAll("@@CO2@@",         infoskjerm.vaerstasjon.co2);
+            bilde = bilde.replaceAll("@@AVGANG@@",      infoskjerm.tog.avgang);
+   //         bilde = bilde.replaceAll("@@VARSELDAG@@",""+ teller.intValue()/*infoskjerm.vaermelding.dagTemperatur*/);
+            bilde = bilde.replaceAll("@@VARSELDAG@@",   infoskjerm.vaermelding.dagTemperatur);
+            bilde = bilde.replaceAll("@@VARSELNATT@@",  infoskjerm.vaermelding.nattTemperatur);
+            bilde = bilde.replaceAll("@@VARSELMORGEN@@",infoskjerm.vaermelding.morgenTemperatur);
             bilde = bilde.replaceAll("@@VARSELKVELD@@", infoskjerm.vaermelding.kveldsTemperatur);
-            bilde = bilde.replaceAll("@@VARSETITTEL@@",infoskjerm.vaermelding.getVarselTittel() );
+            bilde = bilde.replaceAll("@@VARSETITTEL@@", infoskjerm.vaermelding.getVarselTittel() );
+
+
+ //           bilde = bilde.replaceAll("@@SYMBOL@@","v" + teller.intValue()/* infoskjerm.vaermelding.vaerSymbol */);
+            bilde = bilde.replaceAll("@@SYMBOL@@","v" + infoskjerm.vaermelding.vaerSymbol );
+
             bilde = settInnEventer(bilde,infoskjerm);
 
+ //           teller = new Integer(teller.intValue()+1);
+ //           Cache.set("vaer", teller);
             return  new ByteArrayInputStream(bilde.getBytes("UTF-8"));
         } catch (Exception e){
             e.printStackTrace();
             return null;
         }
     }
+
 
     public static String settInnEventer(String bilde, Infoskjerm infoskjerm){
         TreeSet<KalenderEvent> eventer = infoskjerm.kalender.eventerKomplett;
