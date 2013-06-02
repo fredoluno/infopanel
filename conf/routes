@@ -8,6 +8,7 @@ GET /bilde                          controllers.Application.bilde()
 GET /bilde.png                      controllers.Application.bilde()
 
 GET /locale                         controllers.Application.locale()
+GET /google                         controllers.Application.google()
 
 
 # Map static resources from the /public folder to the /assets URL path

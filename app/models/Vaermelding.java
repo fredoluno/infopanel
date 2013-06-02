@@ -57,7 +57,7 @@ public class Vaermelding {
                     dagTemperatur  =  ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
                 }
                 else if(period.equals("3")){
-                    vaerSymbol = ((Element)element.getElementsByTagName("symbol").item(0)).getAttribute("number");
+
                     kveldsTemperatur  =   ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
                     break;
                 }

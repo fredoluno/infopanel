@@ -1,5 +1,14 @@
 package controllers;
 
+import com.google.gdata.client.calendar.CalendarQuery;
+import com.google.gdata.client.calendar.CalendarService;
+import com.google.gdata.data.DateTime;
+import com.google.gdata.data.Feed;
+import com.google.gdata.data.calendar.CalendarEntry;
+import com.google.gdata.data.calendar.CalendarEventEntry;
+import com.google.gdata.data.calendar.CalendarEventFeed;
+import com.google.gdata.util.AuthenticationException;
+import com.google.gdata.util.ServiceException;
 import logic.DiverseUtils;
 import logic.Tjenester;
 import models.*;
@@ -9,7 +18,9 @@ import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+
 import play.Logger;
+import play.data.format.Formats;
 import play.mvc.*;
 import play.api.Play;
 import scala.reflect.io.VirtualFile;
@@ -21,6 +32,7 @@ import java.awt.image.BufferedImage;
 import java.awt.color.ColorSpace;
 
 import java.awt.image.ColorConvertOp;
+import java.net.URL;
 import java.text.DateFormat;
 import java.util.Locale;
 
@@ -56,6 +68,13 @@ public class Application extends Controller {
         }
         return ok(lo);
     }
+
+    public static Result google() throws IOException{
+
+
+        return ok("asdasd");
+    }
+
     public static Result bilde() throws IOException {
 
         try {
@@ -89,8 +108,5 @@ public class Application extends Controller {
         return ok("failed");
 
     }
-
-
-
-  
 }
+

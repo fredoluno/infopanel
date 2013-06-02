@@ -25,8 +25,13 @@ public class KalenderEvent implements Comparable {
         if (eventStart == null){
             return 1;
         }
-
-        return eventStart.compareTo(((KalenderEvent)c).eventStart) ;
+        int comp = eventStart.compareTo(((KalenderEvent)c).eventStart) ;
+        if(comp == 0)
+            comp =  eventStart.compareTo(((KalenderEvent)c).eventSlutt);
+        if(comp == 0)
+            return -1;
+        else
+        return comp;
     }
 
     public String printDato(){
