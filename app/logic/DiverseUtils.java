@@ -15,7 +15,7 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Iterator;
 import java.util.TreeSet;
-import java.util.logging.Logger;
+import play.Logger;
 
 public class DiverseUtils {
     public static String hentVerdi(String tag, Element element) {
@@ -51,7 +51,7 @@ public class DiverseUtils {
 
      public static boolean datoPassert(DateTime dateToCheck){
          DateTime today = (new DateTime()).withTimeAtStartOfDay();
-         if(dateToCheck.compareTo(today)< 0){
+         if(dateToCheck.compareTo(today) <= 0){
              return true;
          }
          return false;
@@ -80,7 +80,7 @@ public class DiverseUtils {
 
     public  static String naa(){
            DateTime now = new DateTime();
-        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm:ss");
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
         return fmt.print(now);
     }
 
@@ -114,7 +114,7 @@ public class DiverseUtils {
             bilde = bilde.replaceAll("@@SYMBOL@@","v" + infoskjerm.vaermelding.vaerSymbol );
 
             bilde = settInnEventer(bilde,infoskjerm);
-
+            Logger.debug(bilde);
  //           teller = new Integer(teller.intValue()+1);
  //           Cache.set("vaer", teller);
             return  new ByteArrayInputStream(bilde.getBytes("UTF-8"));

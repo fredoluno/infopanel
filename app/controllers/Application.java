@@ -1,14 +1,6 @@
 package controllers;
 
-import com.google.gdata.client.calendar.CalendarQuery;
-import com.google.gdata.client.calendar.CalendarService;
-import com.google.gdata.data.DateTime;
-import com.google.gdata.data.Feed;
-import com.google.gdata.data.calendar.CalendarEntry;
-import com.google.gdata.data.calendar.CalendarEventEntry;
-import com.google.gdata.data.calendar.CalendarEventFeed;
-import com.google.gdata.util.AuthenticationException;
-import com.google.gdata.util.ServiceException;
+
 import logic.DiverseUtils;
 import logic.Tjenester;
 import models.*;
@@ -53,10 +45,10 @@ public class Application extends Controller {
 
 
     private static Infoskjerm getInfoskjerm() {
-        Tog tog = new Tog(Tjenester.hentSanntidsinformasjon());
         Vaermelding vaermelding =   new Vaermelding(Tjenester.hentVaermelding());
         Kalender kalender = new Kalender(Tjenester.hentKalender());
         Vaerstasjon vaerstasjon = new Vaerstasjon(Tjenester.hentNetatmoInne(),Tjenester.hentNetatmoUte());
+        Tog tog = new Tog(Tjenester.hentSanntidsinformasjon());
         return new Infoskjerm(tog,vaermelding ,kalender,vaerstasjon);
     }
 
@@ -70,9 +62,8 @@ public class Application extends Controller {
     }
 
     public static Result google() throws IOException{
-
-
-        return ok("asdasd");
+        Bilde bilde = new Bilde();
+        return ok(bilde.getBilde());
     }
 
     public static Result bilde() throws IOException {
@@ -83,7 +74,7 @@ public class Application extends Controller {
 
             ostream = new ByteArrayOutputStream();    //("public/images/out.png");
             TranscoderOutput output = new TranscoderOutput(ostream );
-            TranscoderInput input = new TranscoderInput(DiverseUtils.fyllBilde(Tjenester.getSVG(), getInfoskjerm()));   //new FileInputStream("public/images/skjermplain.svg"))  ;
+            TranscoderInput input = new TranscoderInput(DiverseUtils.fyllBilde(Bilde.getBilde(), getInfoskjerm()));   //new FileInputStream("public/images/skjermplain.svg"))  ;
             t.addTranscodingHint(PNGTranscoder.KEY_BACKGROUND_COLOR, Color.white);
 
             t.transcode(input, output);

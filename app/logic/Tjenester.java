@@ -39,6 +39,8 @@ public class Tjenester {
 
 
     private static String PUBLIC_SVG="https://dl.dropboxusercontent.com/u/53169381/skjerm.svg";
+    private static String PUBLIC_SVG_FOLDER="https://dl.dropboxusercontent.com/u/53169381/infoskjerm/";
+
     private static String PUBLIC_VAER="https://dl.dropboxusercontent.com/u/53169381/vaer/";
 
 
@@ -71,6 +73,12 @@ public class Tjenester {
     public static String getSVG(){
 
         return WS.url(PUBLIC_SVG).get().get().getBody();
+
+    }
+
+    public static String getSVG(String bilde){
+        Logger.debug(PUBLIC_SVG_FOLDER + bilde + ".svg");
+        return WS.url(PUBLIC_SVG_FOLDER + bilde + ".svg").get().get().getBody();
 
     }
     public static String getVaerSymbol(String symbol){

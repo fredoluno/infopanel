@@ -30,6 +30,11 @@ public class Tog {
         avgang ="";
         ankomst = "";
 
+        if (sanntid == null){
+            avgang ="NA";
+            return;
+        }
+
         Iterator<JsonNode> ite = sanntid.getElements();
 
         while (ite.hasNext()) {
