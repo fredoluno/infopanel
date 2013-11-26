@@ -3,19 +3,17 @@ package logic;
 import models.Infoskjerm;
 import models.KalenderEvent;
 import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import play.cache.Cache;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.Locale;
 import java.util.TreeSet;
-import play.Logger;
 
 public class DiverseUtils {
     public static String hentVerdi(String tag, Element element) {
@@ -83,6 +81,10 @@ public class DiverseUtils {
         DateTimeFormatter fmt = DateTimeFormat.forPattern("HH:mm");
         return fmt.print(now);
     }
+    public  static String dag(DateTime dag){
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("EEEE").withLocale(new Locale("no","NO"));
+        return fmt.print(dag);
+    }
 
 
     public static InputStream fyllBilde(String bilde, Infoskjerm infoskjerm)
@@ -110,11 +112,11 @@ public class DiverseUtils {
             bilde = bilde.replaceAll("@@VARSETITTEL@@", infoskjerm.vaermelding.getVarselTittel() );
 
 
- //           bilde = bilde.replaceAll("@@SYMBOL@@","v" + teller.intValue()/* infoskjerm.vaermelding.vaerSymbol */);
-            bilde = bilde.replaceAll("@@SYMBOL@@","v" + infoskjerm.vaermelding.vaerSymbol );
+ //           bilde = bilde.replaceAll("@@SYMBOL@@","v" + teller.intValue()/* infoskjerm.vaermelding.dagSymbol */);
+            bilde = bilde.replaceAll("@@SYMBOL@@","v" + infoskjerm.vaermelding.dagSymbol);
 
             bilde = settInnEventer(bilde,infoskjerm);
-            Logger.debug(bilde);
+//            Logger.debug(bilde);
  //           teller = new Integer(teller.intValue()+1);
  //           Cache.set("vaer", teller);
             return  new ByteArrayInputStream(bilde.getBytes("UTF-8"));

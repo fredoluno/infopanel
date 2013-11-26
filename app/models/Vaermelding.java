@@ -1,9 +1,14 @@
 package models;
 
+import logic.DiverseUtils;
+import org.joda.time.DateTime;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import play.Logger;
+
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,23 +21,29 @@ public class Vaermelding {
     public  boolean varselFraIdag = true;
 
     public String nattTemperatur ="";
+    public String nattSymbol ="";
     public String morgenTemperatur ="";
+    public String morgenSymbol = "";
     public String dagTemperatur ="";
     public String kveldsTemperatur ="";
+    public String kveldsSymbol = "";
 
-    public String vaerSymbol;
-
+    public String dagSymbol;
+    public int langtidsvarsel = 0;
     public Document vaerXML;
     public String temptekst;
+    public HashMap <String,String>langtidsvarselet;
+
 
     public Vaermelding(Document document){
         vaerXML = document;
-
+        langtidsvarselet = new HashMap<String,String>();
         Node tabular =document.getElementsByTagName("tabular").item(0);
 
         NodeList nodeList =  tabular.getChildNodes();
         boolean  foersteElement = true;
         int  dagPeriode = 2;
+        boolean hovedFerdig=false;
 
         for (int i = 0; i < nodeList.getLength(); i++)   {
             Node node = nodeList.item(i)  ;
@@ -48,29 +59,52 @@ public class Vaermelding {
 
                 }
                 foersteElement = false;
-                if(period.equals("0")){
-                    nattTemperatur  = ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
-                }else if(period.equals("1")){
-                    morgenTemperatur  =  ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
-                }else if(period.equals("2")){
-                    vaerSymbol = ((Element)element.getElementsByTagName("symbol").item(0)).getAttribute("number");
-                    dagTemperatur  =  ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
+                if(!hovedFerdig){
+                    if(period.equals("0")){
+                        nattSymbol = ((Element)element.getElementsByTagName("symbol").item(0)).getAttribute("number");
+                        nattTemperatur  = ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
+                    }else if(period.equals("1")){
+                        morgenSymbol = ((Element)element.getElementsByTagName("symbol").item(0)).getAttribute("number");
+                        morgenTemperatur  =  ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
+                    }else if(period.equals("2")){
+                        dagSymbol = ((Element)element.getElementsByTagName("symbol").item(0)).getAttribute("number");
+                        dagTemperatur  =  ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
+                    }
+                    else if(period.equals("3")){
+                        kveldsSymbol = ((Element)element.getElementsByTagName("symbol").item(0)).getAttribute("number");
+                        kveldsTemperatur  =   ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
+                        hovedFerdig=true;
+                    }
                 }
-                else if(period.equals("3")){
-
-                    kveldsTemperatur  =   ((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value");
-                    break;
+                else{
+                      leggTilLangtidsvarsel(element);
                 }
-
 
 
             }
         }
+        printLangtidsvarsel();
+    }
+
+    private void leggTilLangtidsvarsel(Element element) {
+       langtidsvarselet.put("langtidsvarsel." + langtidsvarsel+".temperatur",((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value"));
+       langtidsvarselet.put("langtidsvarsel." + langtidsvarsel+".symbol",((Element)element.getElementsByTagName("symbol").item(0)).getAttribute("number"));
+       langtidsvarselet.put("langtidsvarsel." + langtidsvarsel + ".dag", DiverseUtils.dag(new DateTime(element.getAttribute("from"))));
+       langtidsvarselet.put("langtidsvarsel." + langtidsvarsel+".temperatur",((Element)element.getElementsByTagName("temperature").item(0)).getAttribute("value"));
+        langtidsvarsel++;
+
+    }
+
+    public void printLangtidsvarsel(){
+        Logger.debug("YEAH");
+      for(String val : langtidsvarselet.keySet()){
+          Logger.debug(val + " - " +langtidsvarselet.get(val));
+      }
     }
 
     public String getVarselTittel(){
-        if(varselFraIdag) return "varsel i dag";
-        return "varsel i morgen";
+        if(varselFraIdag) return "Været i dag";
+        return "Været i morgen";
 
     }
 
