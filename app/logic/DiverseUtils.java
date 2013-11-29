@@ -141,7 +141,7 @@ public class DiverseUtils {
         while(iterator.hasNext()) {
             KalenderEvent event = (KalenderEvent)iterator.next();
 
-            bilde = bilde.replaceAll("@@EVENT"+ teller +"@@",event.printDato() + " - "+ event.tittel );
+            bilde = bilde.replaceAll("@@EVENT"+ teller +"@@","• "+event.printDato() + " - "+ event.tittel );
             teller++;
         }
 
