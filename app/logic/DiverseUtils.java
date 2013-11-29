@@ -8,6 +8,7 @@ import org.joda.time.format.DateTimeFormatter;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import play.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -114,8 +115,13 @@ public class DiverseUtils {
 
  //           bilde = bilde.replaceAll("@@SYMBOL@@","v" + teller.intValue()/* infoskjerm.vaermelding.dagSymbol */);
             bilde = bilde.replaceAll("@@SYMBOL@@","v" + infoskjerm.vaermelding.dagSymbol);
+            bilde = bilde.replaceAll("@@VARSELNATTSYMBOL@@", "v" +  infoskjerm.vaermelding.nattSymbol);
+            bilde = bilde.replaceAll("@@VARSELMORGENSYMBOL@@","v" + infoskjerm.vaermelding.morgenSymbol);
+            bilde = bilde.replaceAll("@@VARSELKVELDSYMBOL@@","v" +  infoskjerm.vaermelding.kveldsSymbol);
+
 
             bilde = settInnEventer(bilde,infoskjerm);
+            bilde = settInnLangtidsvarsel(bilde,infoskjerm)  ;
 //            Logger.debug(bilde);
  //           teller = new Integer(teller.intValue()+1);
  //           Cache.set("vaer", teller);
@@ -138,10 +144,21 @@ public class DiverseUtils {
             bilde = bilde.replaceAll("@@EVENT"+ teller +"@@",event.printDato() + " - "+ event.tittel );
             teller++;
         }
+
+        while(teller < 10){
+            bilde = bilde.replaceAll("@@EVENT"+ teller +"@@","" );
+            teller ++;
+        }
         return    bilde;
     }
 
-
+    public static String settInnLangtidsvarsel(String bilde, Infoskjerm infoskjerm)
+    {
+        for(String val :  infoskjerm.vaermelding.langtidsvarselet.keySet()){
+            bilde = bilde.replaceAll("@@"+val+"@@",infoskjerm.vaermelding.langtidsvarselet.get(val) );
+        }
+        return bilde;
+    }
     public static String left(String text, String divider){
         int  teller = text.indexOf(divider);
         if (teller < 0) return text;

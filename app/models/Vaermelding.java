@@ -83,7 +83,7 @@ public class Vaermelding {
 
             }
         }
-        printLangtidsvarsel();
+//        printLangtidsvarsel();
     }
 
     private void leggTilLangtidsvarsel(Element element) {
