@@ -80,6 +80,7 @@ public class Tjenester {
         Logger.debug(PUBLIC_SVG_FOLDER + bilde + ".svg");
         return WS.url(PUBLIC_SVG_FOLDER + bilde + ".svg").get().get().getBody();
 
+
     }
     public static String getVaerSymbol(String symbol){
 

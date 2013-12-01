@@ -38,7 +38,7 @@ import java.security.GeneralSecurityException;
  * To change this template use File | Settings | File Templates.
  */
 public class Bilde {
-    private static HttpTransport httpTransport;
+
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     private static com.google.api.services.calendar.Calendar client;
 
@@ -58,7 +58,9 @@ public class Bilde {
 
         CalendarRequestInitializer credential = new    CalendarRequestInitializer(API_KEY);
         try {
-            httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+
+            HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+
             client = new com.google.api.services.calendar.Calendar.Builder(
                     httpTransport, JSON_FACTORY,null).setApplicationName("Infoskjerm").setCalendarRequestInitializer(credential).build();
 
@@ -67,6 +69,8 @@ public class Bilde {
                     .setTimeMax(new DateTime(new org.joda.time.DateTime().plusMinutes(1).toDate()))
                     .setSingleEvents(true)
                     .execute();
+            httpTransport.shutdown();
+
             if(!events.getItems().isEmpty()){
                 return events.getItems().get(0).getSummary();
             }

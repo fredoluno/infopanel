@@ -86,7 +86,7 @@ public class Application extends Controller {
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(image2, "png",baos );
-
+            ostream.close();
             return ok(baos.toByteArray()).as("image/png");
 
         } catch (Exception e) {
