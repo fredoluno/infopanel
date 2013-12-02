@@ -105,6 +105,7 @@ public class DiverseUtils {
             bilde = bilde.replaceAll("@@TRYKK@@",       infoskjerm.vaerstasjon.trykk);
             bilde = bilde.replaceAll("@@CO2@@",         infoskjerm.vaerstasjon.co2);
             bilde = bilde.replaceAll("@@AVGANG@@",      infoskjerm.tog.avgang);
+            bilde = bilde.replaceAll("@@ANKOMST@@",      infoskjerm.tog.ankomst);
    //         bilde = bilde.replaceAll("@@VARSELDAG@@",""+ teller.intValue()/*infoskjerm.vaermelding.dagTemperatur*/);
             bilde = bilde.replaceAll("@@VARSELDAG@@",   infoskjerm.vaermelding.dagTemperatur);
             bilde = bilde.replaceAll("@@VARSELNATT@@",  infoskjerm.vaermelding.nattTemperatur);
