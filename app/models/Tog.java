@@ -59,7 +59,7 @@ public class Tog {
 
         }   catch (Exception e){
 
-            Logger.debug(e.toString());
+            Logger.debug("getMinutterTilAvgang" + e.toString());
             return "" + getIntervalIMinutter(new Interval(0,0));
         }
 

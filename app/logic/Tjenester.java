@@ -89,21 +89,32 @@ public class Tjenester {
     }
 
     public static JsonNode hentNetatmoInne(){
+        JsonNode node =  (JsonNode) Cache.get("netatmoinne");
+        if(node == null){
+         String token = getToken();
+         Logger.debug("hentNetatmo" +  getIndoorPostMsg(token));
+         node = WS.url(NETATMO_MEASURE_URL).setHeader("Content-Type", "application/x-www-form-urlencoded").post(getIndoorPostMsg(token)).get().asJson();
 
-     String token = getToken();
-     Logger.debug("hentNetatmo" +  getIndoorPostMsg(token));
-     JsonNode node = WS.url(NETATMO_MEASURE_URL).setHeader("Content-Type", "application/x-www-form-urlencoded").post(getIndoorPostMsg(token)).get().asJson();
+         Logger.debug("Measure: " + node.toString());
+         Cache.set("netatmoinne", node, 5*60);
+        }else{
+            Logger.debug("henter cahcet versjon av NetatmoInne");
+        }
 
-     Logger.debug("Measure: " + node.toString());
-     return  node;
+         return  node;
     }
     public static JsonNode hentNetatmoUte(){
+        JsonNode node =  (JsonNode) Cache.get("netatmoute");
+        if(node == null){
+            String token = getToken();
+            Logger.debug("hentNetatmo" +  getIndoorPostMsg(token));
+            node = WS.url(NETATMO_MEASURE_URL).setHeader("Content-Type", "application/x-www-form-urlencoded").post(getOutDoorPostMsg(token)).get().asJson();
 
-        String token = getToken();
-        Logger.debug("hentNetatmo" +  getIndoorPostMsg(token));
-        JsonNode node = WS.url(NETATMO_MEASURE_URL).setHeader("Content-Type", "application/x-www-form-urlencoded").post(getOutDoorPostMsg(token)).get().asJson();
-
-        Logger.debug("Measure: " + node.toString());
+            Logger.debug("Measure: " + node.toString());
+            Cache.set("netatmoute", node, 5*60);
+        }else{
+            Logger.debug("henter cahcet versjon av NetatmoUt");
+        }
         return  node;
     }
 
