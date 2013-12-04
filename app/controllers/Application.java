@@ -68,7 +68,11 @@ public class Application extends Controller {
 
     public static Result bilde() throws IOException {
 
-        try {
+        try
+        {
+//        MÅ GJØRES INNTIL JEG VEIT HVA SOM SKAPER ISSUES PÅ HEROKU. SER UT TIL AT DE IKKE GREIER Å SETTE MAX HEAP
+            System.gc();
+
             PNGTranscoder t = new PNGTranscoder();
             ByteArrayOutputStream ostream ;
 
