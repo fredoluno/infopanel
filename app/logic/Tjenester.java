@@ -32,8 +32,16 @@ public class Tjenester {
     private static String OUTDOOR_ID = "02:00:00:00:ab:86";
 
 
+
+    private static String GOOGLE_TOKEN_URL="https://accounts.google.com/o/oauth2/token";
+    private static String GOOGLE_CLIENT_SECRET="p8H71sBAUW2NkUWXuEXieeUh";
+    private static String GOOGLE_CLIENT_ID="205034400856-18dht3k2fp8erfom72nescvv1hpjs6m3.apps.googleusercontent.com";
+    private static String GOOGLE_REFRESH_TOKEN ="1/EAcOCH_CR6Emvgkuswr4r7yEVi8c-tFiq4dcjHCFCQM";
+
     public static final String REFRESH_TOKEN = "refresh_token";
     public static final String TOKEN = "token";
+    public static final String G_REFRESH_TOKEN = "g_refresh_token";
+    public static final String G_TOKEN = "g_token";
 
     private static String KALENDER_URL = "https://www.google.com/calendar/feeds/fredoluno%40gmail.com/private-e461fa862b97c7b0b8553ed553a7414e/full";
 
@@ -69,6 +77,9 @@ public class Tjenester {
         return WS.url(KALENDER_URL).get().get().asXml();
 
     }
+
+
+
 
     public static String getSVG(){
 
@@ -121,6 +132,7 @@ public class Tjenester {
     private static String getToken() {
 
         String token =(String) Cache.get(TOKEN);
+
         Logger.debug("Token: " + token);
         if (token == null){
             JsonNode node;
@@ -147,6 +159,32 @@ public class Tjenester {
         return token;  //To change body of created methods use File | Settings | File Templates.
     }
 
+
+    public static String getGoogleToken() {
+
+        Cache.set(G_REFRESH_TOKEN,GOOGLE_REFRESH_TOKEN);
+
+        String token =(String) Cache.get(G_TOKEN);
+        Logger.debug("Google_Token: " + token);
+     //   token = null;
+        if (token == null){
+            JsonNode node;
+            String postMsg ="";
+            String refreshToken = (String)Cache.get(G_REFRESH_TOKEN);
+
+            Logger.debug("GOOGLE Forsøker med Refresh Token");
+            node = WS.url(GOOGLE_TOKEN_URL).setHeader("Content-Type", "application/x-www-form-urlencoded").post(getGoogleRefreshPostMsg(refreshToken)).get().asJson();
+            if(node.get("error") != null){
+                 Logger.debug("GOOGLE REFRESH_TOKEN_FEILER:  " + node.get("error").toString() );
+                 //Cache.set(G_REFRESH_TOKEN,null);
+                 getToken();
+             }
+
+            token =  setGoogleTokenCache(node);
+        }
+        return token;  //To change body of created methods use File | Settings | File Templates.
+    }
+
     private static String setTokenCache(JsonNode node) {
 
         String token =    replaceFnutter(node.get("access_token").toString());
@@ -154,6 +192,15 @@ public class Tjenester {
         Logger.debug("noden ser slik ut:" + node.toString());
         Cache.set(TOKEN, token,(new Integer(node.get("expires_in").toString()).intValue()));
         Cache.set(REFRESH_TOKEN,replaceFnutter(node.get("refresh_token").toString()));
+        return token;
+    }
+
+    private static String setGoogleTokenCache(JsonNode node) {
+        String token =    replaceFnutter(node.get("access_token").toString());
+        Logger.debug("setter Token til:" + token);
+        Logger.debug("noden ser slik ut:" + node.toString());
+        Cache.set(G_TOKEN, token,(new Integer(node.get("expires_in").toString()).intValue()));
+        //Cache.set(REFRESH_TOKEN,replaceFnutter(node.get("refresh_token").toString()));
         return token;
     }
 
@@ -171,6 +218,14 @@ public class Tjenester {
         postMsg += "&client_id=" + NETATMO_CLIENT_ID;
         postMsg += "&client_secret="+ NETATMO_CLIENT_SECRET;
 
+        return postMsg;
+    }
+
+    private static String getGoogleRefreshPostMsg(String token) {
+        String postMsg = "grant_type=refresh_token" ;
+        postMsg += "&refresh_token=" + token;
+        postMsg += "&client_id=" + GOOGLE_CLIENT_ID;
+        postMsg += "&client_secret="+ GOOGLE_CLIENT_SECRET;
         return postMsg;
     }
 
@@ -199,6 +254,20 @@ public class Tjenester {
         return text;
     }
 
+    public static String  getAccessTokenGooglePostMsg()
+    {
+        String postMsg ="code=4%2FcDSv2ESOIaEcl0GRbD8uFA6IMwjc.0sQLZhqWi_MZOl05ti8ZT3aTQ-mhiAI&";
+        postMsg += "client_id=205034400856-oimgsumc6uik4paem53h4mosmgal8jc5.apps.googleusercontent.com&";
+        postMsg += "scope=&client_secret=rM54dwVG2T1T9TemfM82tF9G&";
+        postMsg += "redirect_uri=http%3A%2F%2Fwww.vg.no&";
+        postMsg +="grant_type=authorization_code";
 
+       return postMsg;
+    }
 
 }
+
+
+
+
+

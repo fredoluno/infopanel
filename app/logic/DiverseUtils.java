@@ -58,11 +58,22 @@ public class DiverseUtils {
      }
 
     public static boolean erSammeDag(DateTime dato, DateTime dato2) {
+
+//        Logger.debug("dato: " + dato.toString()+ " dato2: " + dato2);
+//        Logger.debug("datom: " + dato.toDateMidnight()+ " dato2m: " + dato2.minusMinutes(1).toDateMidnight());
+//
+//        if(dato.toDateMidnight().compareTo(dato2.minusMinutes(1).toDateMidnight())== 0){
+//            Logger.debug("Er samme dag2");
+//            return true;
+//        }
+
+
         DateTime now = dato.withTimeAtStartOfDay();
         DateTime tomorrow = now.plusDays(1);
         tomorrow = tomorrow.plusMinutes(1);
-
+        Logger.debug("now: " + now.toString()+ " tomorrow: " + tomorrow);
         if (dato2.compareTo(now)>0 && dato2.compareTo(tomorrow) < 0 ){
+//            Logger.debug("Er samme dag");
             return true;
         }
         return false;
