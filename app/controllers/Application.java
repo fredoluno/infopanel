@@ -48,7 +48,7 @@ public class Application extends Controller {
         Vaermelding vaermelding =   new Vaermelding(Tjenester.hentVaermelding());
         Kalender kalender = new Kalender();
         Vaerstasjon vaerstasjon = new Vaerstasjon(Tjenester.hentNetatmoInne(),Tjenester.hentNetatmoUte());
-        Tog tog = new Tog(Tjenester.hentSanntidsinformasjon());
+        Tog tog = new Tog(Tjenester.hentSanntidsinformasjon_v2());
         return new Infoskjerm(tog,vaermelding ,kalender,vaerstasjon);
     }
 
@@ -64,8 +64,11 @@ public class Application extends Controller {
 
 
     public static Result google() throws IOException{
-        Kalender kalender = new Kalender();
-        return ok(kalender.printEventer());
+//        Kalender kalender = new Kalender();
+//        return ok(kalender.printEventer());
+
+        Tog toget = new Tog(Tjenester.hentSanntidsinformasjon_v2());
+        return ok("ssss");
     }
 
     public static Result bilde() throws IOException {

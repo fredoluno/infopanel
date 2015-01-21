@@ -21,6 +21,7 @@ public class Tjenester {
 
 
     public static String RUTER_URL = "http://reis.trafikanten.no/reisrest/realtime/getrealtimedata/2350040";
+    public static String RUTER_URLV2 = "http://reisapi.ruter.no/stopvisit/getdepartures/2350040";
     public static String YR_URL = "http://www.yr.no/sted/Norge/Akershus/Ullensaker/Jessheim/varsel.xml";
 
 
@@ -55,6 +56,11 @@ public class Tjenester {
 
     public static JsonNode hentSanntidsinformasjon(){
         return WS.url(RUTER_URL).get().get().asJson();
+    }
+
+    public static JsonNode hentSanntidsinformasjon_v2(){
+       // return WS.url(RUTER_URLV2).get().get().asXml();
+        return WS.url(RUTER_URLV2).setHeader("Content-Type", "application/json").get().get().asJson();
     }
     public static Document hentVaermelding(){
 
