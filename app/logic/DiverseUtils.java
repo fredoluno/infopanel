@@ -139,6 +139,7 @@ public class DiverseUtils {
  //           Cache.set("vaer", teller);
             return  new ByteArrayInputStream(bilde.getBytes("UTF-8"));
         } catch (Exception e){
+            Logger.error(e.toString());
             e.printStackTrace();
             return null;
         }

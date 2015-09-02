@@ -75,7 +75,9 @@ public class Application extends Controller {
 
         try
         {
-//        MÅ GJØRES INNTIL JEG VEIT HVA SOM SKAPER ISSUES PÅ HEROKU. SER UT TIL AT DE IKKE GREIER Å SETTE MAX HEAP
+            long startTime = System.nanoTime();
+
+            //        MÅ GJØRES INNTIL JEG VEIT HVA SOM SKAPER ISSUES PÅ HEROKU. SER UT TIL AT DE IKKE GREIER Å SETTE MAX HEAP
             System.gc();
 
             PNGTranscoder t = new PNGTranscoder();
@@ -96,10 +98,14 @@ public class Application extends Controller {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(image2, "png",baos );
             ostream.close();
+            long endTime = System.nanoTime();
+
+            long duration = (endTime - startTime);
+            Logger.info("Tidbrukt=" + duration);
             return ok(baos.toByteArray()).as("image/png");
 
         } catch (Exception e) {
-            Logger.debug(e.toString());
+            Logger.error(e.toString());
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
