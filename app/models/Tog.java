@@ -81,7 +81,7 @@ public class Tog {
             JsonNode temp = ite.next();
             DateTime parsed = new DateTime(temp.path("MonitoredVehicleJourney").path("MonitoredCall").path("ExpectedDepartureTime").asText());
 
-            Logger.error(parsed.toString());
+            Logger.debug(parsed.toString());
 
             try {
                 int togtid = 0;
@@ -99,6 +99,7 @@ public class Tog {
                 }
             }catch (Exception e)
             {
+                Logger.error(e.toString());
                 e.printStackTrace();
             }
 
