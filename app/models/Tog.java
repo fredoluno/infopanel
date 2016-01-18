@@ -80,14 +80,26 @@ public class Tog {
         while (ite.hasNext()) {
             JsonNode temp = ite.next();
             DateTime parsed = new DateTime(temp.path("MonitoredVehicleJourney").path("MonitoredCall").path("ExpectedDepartureTime").asText());
-            int togtid =  getIntervalIMinutter(new Interval(naa, parsed));
 
-            if(isAvgang(temp)) {
-               avgangtid = avgangtid > togtid? togtid: avgangtid;
-               Logger.debug("avgangstid: " + avgangtid + " togtid:" + togtid + " dest:"+ temp.path("MonitoredVehicleJourney").path("DestinationName").asText() );
-            }else{
-               ankomsttid = ankomsttid > togtid? togtid: ankomsttid;
-               Logger.debug("ankommstid: " + ankomsttid + " togtid:" + togtid + " dest:"+ temp.path("MonitoredVehicleJourney").path("DestinationName").asText());
+            Logger.error(parsed.toString());
+
+            try {
+                int togtid = 0;
+                if (parsed.compareTo(naa) > 0) {
+                    togtid = getIntervalIMinutter(new Interval(naa, parsed));
+                }else{
+                    togtid = 0 - getIntervalIMinutter(new Interval(parsed, naa));
+                }
+                if (isAvgang(temp)) {
+                    avgangtid = avgangtid > togtid ? togtid : avgangtid;
+                    Logger.debug("avgangstid: " + avgangtid + " togtid:" + togtid + " dest:" + temp.path("MonitoredVehicleJourney").path("DestinationName").asText());
+                } else {
+                    ankomsttid = ankomsttid > togtid ? togtid : ankomsttid;
+                    Logger.debug("ankommstid: " + ankomsttid + " togtid:" + togtid + " dest:" + temp.path("MonitoredVehicleJourney").path("DestinationName").asText());
+                }
+            }catch (Exception e)
+            {
+                e.printStackTrace();
             }
 
         }
