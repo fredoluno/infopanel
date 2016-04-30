@@ -60,7 +60,8 @@ public class Tjenester {
 
     public static JsonNode hentSanntidsinformasjon_v2(){
        // return WS.url(RUTER_URLV2).get().get().asXml();
-        return WS.url(RUTER_URLV2).setHeader("Content-Type", "application/json").get().get().asJson();
+
+        return WS.url(RUTER_URLV2).setHeader("Content-Type", "application/json").setTimeout(100000).get().get().asJson();
     }
     public static Document hentVaermelding(){
 
