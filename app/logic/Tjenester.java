@@ -5,9 +5,11 @@ import org.w3c.dom.Document;
 import play.Logger;
 import play.cache.Cache;
 import play.libs.WS;
+import scala.util.control.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.lang.Exception;
 
 
 /**
@@ -60,8 +62,15 @@ public class Tjenester {
 
     public static JsonNode hentSanntidsinformasjon_v2(){
        // return WS.url(RUTER_URLV2).get().get().asXml();
+        try {
+            return WS.url(RUTER_URLV2).setHeader("Content-Type", "application/json").get().get().asJson();
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            Logger.error(e.toString());
+            return null;
+        }
 
-        return WS.url(RUTER_URLV2).setHeader("Content-Type", "application/json").setTimeout(100000).get().get().asJson();
     }
     public static Document hentVaermelding(){
 
