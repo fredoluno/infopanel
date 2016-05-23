@@ -67,6 +67,7 @@ public class Tjenester {
         }catch (Exception e)
         {
             e.printStackTrace();
+            Logger.error("Server:" + RUTER_URLV2);
             Logger.error(e.toString());
             return null;
         }
