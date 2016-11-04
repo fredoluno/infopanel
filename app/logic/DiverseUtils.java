@@ -47,6 +47,24 @@ public class DiverseUtils {
         }
         return false;
     }
+    public static boolean erImorgen(DateTime fra, DateTime til) {
+        DateTime now = (new DateTime()).withTimeAtStartOfDay();
+        DateTime tomorrow = now.plusDays(1);
+        DateTime tomorrowPlusOne = now.plusDays(2);
+
+        if (fra.compareTo(tomorrowPlusOne)< 0 && til.compareTo(tomorrow)>0 ){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean erDetTidligPaaDagen() {
+        DateTime now = new DateTime();
+        if( now.hourOfDay().get()< 12 )
+            return true;
+
+        return false;
+    }
 
      public static boolean datoPassert(DateTime dateToCheck){
          DateTime today = (new DateTime()).withTimeAtStartOfDay();
@@ -123,7 +141,7 @@ public class DiverseUtils {
             bilde = bilde.replaceAll("@@VARSELMORGEN@@",infoskjerm.vaermelding.morgenTemperatur);
             bilde = bilde.replaceAll("@@VARSELKVELD@@", infoskjerm.vaermelding.kveldsTemperatur);
             bilde = bilde.replaceAll("@@VARSETITTEL@@", infoskjerm.vaermelding.getVarselTittel() );
-
+            bilde = bilde.replaceAll("@@DAILY@@", infoskjerm.kalender.printDaily());
 
  //           bilde = bilde.replaceAll("@@SYMBOL@@","v" + teller.intValue()/* infoskjerm.vaermelding.dagSymbol */);
             bilde = bilde.replaceAll("@@SYMBOL@@","v" + infoskjerm.vaermelding.dagSymbol);
@@ -132,9 +150,10 @@ public class DiverseUtils {
             bilde = bilde.replaceAll("@@VARSELKVELDSYMBOL@@","v" +  infoskjerm.vaermelding.kveldsSymbol);
 
 
+
             bilde = settInnEventer(bilde,infoskjerm);
             bilde = settInnLangtidsvarsel(bilde,infoskjerm)  ;
-//            Logger.debug(bilde);
+            Logger.debug(bilde);
  //           teller = new Integer(teller.intValue()+1);
  //           Cache.set("vaer", teller);
             return  new ByteArrayInputStream(bilde.getBytes("UTF-8"));

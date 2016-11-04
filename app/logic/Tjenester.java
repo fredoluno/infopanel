@@ -51,6 +51,7 @@ public class Tjenester {
 
     private static String PUBLIC_SVG="https://dl.dropboxusercontent.com/u/53169381/skjerm.svg";
     private static String PUBLIC_SVG_FOLDER="https://dl.dropboxusercontent.com/u/53169381/infoskjerm/";
+//    "https://www.dropbox.com/sh/1arhtdijn5oy7xe/AAAjVReYrcgEpTHRZ62PpHsSa?dl=0 ";
 
     private static String PUBLIC_VAER="https://dl.dropboxusercontent.com/u/53169381/vaer/";
 

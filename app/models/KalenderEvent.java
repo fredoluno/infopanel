@@ -34,6 +34,7 @@ public class KalenderEvent implements Comparable {
         return comp;
     }
 
+
     public String printDato(){
 
         if(DiverseUtils.erIdag(eventStart)&&DiverseUtils.erIdag(eventSlutt)){
