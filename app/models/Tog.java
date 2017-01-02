@@ -21,8 +21,8 @@ public class Tog {
 //    private static String RETNINGAVGANG =  "\"2\"";
 //    private static String RETNINGANKOMST= "\"1\"";
 
-    private static int RETNINGAVGANGv2 =  2;
-    private static int RETNINGANKOMSTv2= 1;
+    private static int RETNINGAVGANGv2 =  1;
+    private static int RETNINGANKOMSTv2= 2;
 
 
     public String avgang;
@@ -81,7 +81,7 @@ public class Tog {
             JsonNode temp = ite.next();
             DateTime parsed = new DateTime(temp.path("MonitoredVehicleJourney").path("MonitoredCall").path("ExpectedDepartureTime").asText());
 
-            Logger.debug(parsed.toString());
+            Logger.debug(parsed.toString() + " streng: " + temp.path("MonitoredVehicleJourney").path("MonitoredCall").path("ExpectedDepartureTime").asText() );
 
             try {
                 int togtid = 0;

@@ -64,11 +64,11 @@ public class Application extends Controller {
 
 
     public static Result google() throws IOException{
-        Kalender kalender = new Kalender();
-        return ok(kalender.printEventer());
+//        Kalender kalender = new Kalender();
+//        return ok(kalender.printEventer());
 
-//        Tog toget = new Tog(Tjenester.hentSanntidsinformasjon_v2());
-//        return ok("ssss");
+        Tog toget = new Tog(Tjenester.hentSanntidsinformasjon_v2());
+        return ok("ssss");
     }
 
     public static Result bilde() throws IOException {

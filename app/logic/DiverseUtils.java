@@ -153,7 +153,7 @@ public class DiverseUtils {
 
             bilde = settInnEventer(bilde,infoskjerm);
             bilde = settInnLangtidsvarsel(bilde,infoskjerm)  ;
-            Logger.debug(bilde);
+//            Logger.debug(bilde);
  //           teller = new Integer(teller.intValue()+1);
  //           Cache.set("vaer", teller);
             return  new ByteArrayInputStream(bilde.getBytes("UTF-8"));
