@@ -98,7 +98,7 @@ public class Application extends Controller {
 
         try
         {
-            String filtekst=Tjenester.lesFil();
+            String filtekst=Tjenester.lesFil().trim();
             Logger.error("filtekst=" + filtekst);
             if(!filtekst.trim().equals(""))   {
                 Logger.error("adadas");

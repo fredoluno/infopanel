@@ -140,7 +140,7 @@ public class Tjenester {
     }
 
     public static InputStream getCloudinary(String bilde){
-        String bilde2 = "http://res.cloudinary.com/fredrik-hansen/image/upload/c_thumb,e_grayscale,g_face,h_800,w_600/v1488204707/o0ys28jebyt18xm8g9ii.png"   ;
+        String bilde2 = "http://res.cloudinary.com/fredrik-hansen/image/upload/c_thumb,e_grayscale,g_face,h_800,w_600/"+ bilde + ".png"   ;
         Logger.debug(PUBLIC_SVG_FOLDER + bilde2 + ".");
         return WS.url(bilde2).get().get().getBodyAsStream();
 
