@@ -8,8 +8,12 @@ import play.libs.WS;
 import scala.util.control.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.lang.Exception;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 
 /**
@@ -111,6 +115,38 @@ public class Tjenester {
 
 
     }
+
+
+    public static void skrivFil(String fil)
+    {
+        try{
+            PrintWriter writer = new PrintWriter("bilde.txt", "UTF-8");
+            writer.println(fil);
+            writer.close();
+        } catch (IOException e) {
+            // do something
+        }
+    }
+
+    public static String lesFil(){
+
+        try {
+            return new String(Files.readAllBytes(Paths.get("bilde.txt")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       return "";
+
+    }
+
+    public static InputStream getCloudinary(String bilde){
+        String bilde2 = "http://res.cloudinary.com/fredrik-hansen/image/upload/c_thumb,e_grayscale,g_face,h_800,w_600/v1488204707/o0ys28jebyt18xm8g9ii.png"   ;
+        Logger.debug(PUBLIC_SVG_FOLDER + bilde2 + ".");
+        return WS.url(bilde2).get().get().getBodyAsStream();
+
+
+    }
+
     public static String getVaerSymbol(String symbol){
 
         return WS.url(PUBLIC_VAER + symbol +".svg").get().get().getBody();

@@ -10,6 +10,7 @@ import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.batik.transcoder.TranscoderInput;
 import org.apache.commons.io.output.ByteArrayOutputStream;
+import org.apache.commons.io.IOUtils;
 
 import play.Logger;
 import play.data.format.Formats;
@@ -33,6 +34,8 @@ import javax.imageio.ImageIO;
 
 
 public class Application extends Controller {
+
+
 
 
     public static Result index() {
@@ -71,38 +74,67 @@ public class Application extends Controller {
         return ok("ssss");
     }
 
+    public static Result setBilde(String id) throws IOException{
+
+        Tjenester.skrivFil(id);
+        Logger.error("skrivfil=" + id);
+        return ok("OK="+id);
+    }
+    public static Result hentBilde() throws IOException{
+        String filtekst=Tjenester.lesFil();
+        Logger.error("filtekst=" + filtekst);
+        if(!filtekst.trim().equals(""))   {
+            Logger.error("adadas");
+            Tjenester.skrivFil("");
+            return ok( IOUtils.toByteArray(Tjenester.getCloudinary(filtekst))).as("image/png");
+        } else{
+            return ok("Ikke noe bilde");
+        }
+
+
+    }
+
     public static Result bilde() throws IOException {
 
         try
         {
-            long startTime = System.nanoTime();
+            String filtekst=Tjenester.lesFil();
+            Logger.error("filtekst=" + filtekst);
+            if(!filtekst.trim().equals(""))   {
+                Logger.error("adadas");
+                Tjenester.skrivFil("");
+                return ok( IOUtils.toByteArray(Tjenester.getCloudinary(filtekst))).as("image/png");
+            } else{
 
-            //        MÅ GJØRES INNTIL JEG VEIT HVA SOM SKAPER ISSUES PÅ HEROKU. SER UT TIL AT DE IKKE GREIER Å SETTE MAX HEAP
-            System.gc();
+                long startTime = System.nanoTime();
 
-            PNGTranscoder t = new PNGTranscoder();
-            ByteArrayOutputStream ostream ;
+                //        MÅ GJØRES INNTIL JEG VEIT HVA SOM SKAPER ISSUES PÅ HEROKU. SER UT TIL AT DE IKKE GREIER Å SETTE MAX HEAP
+                System.gc();
 
-            ostream = new ByteArrayOutputStream();    //("public/images/out.png");
-            TranscoderOutput output = new TranscoderOutput(ostream );
-            TranscoderInput input = new TranscoderInput(DiverseUtils.fyllBilde(Bilde.getBilde(), getInfoskjerm()));   //new FileInputStream("public/images/skjermplain.svg"))  ;
-            t.addTranscodingHint(PNGTranscoder.KEY_BACKGROUND_COLOR, Color.white);
+                PNGTranscoder t = new PNGTranscoder();
+                ByteArrayOutputStream ostream ;
 
-            t.transcode(input, output);
+                ostream = new ByteArrayOutputStream();    //("public/images/out.png");
+                TranscoderOutput output = new TranscoderOutput(ostream );
+                TranscoderInput input = new TranscoderInput(DiverseUtils.fyllBilde(Bilde.getBilde(), getInfoskjerm()));   //new FileInputStream("public/images/skjermplain.svg"))  ;
+                t.addTranscodingHint(PNGTranscoder.KEY_BACKGROUND_COLOR, Color.white);
 
-            BufferedImage image = ImageIO.read(new ByteArrayInputStream(ostream.toByteArray()));
-            ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
-            BufferedImage image2 = new BufferedImage(600,800, BufferedImage.TYPE_BYTE_GRAY );
-            colorConvert.filter(image, image2);
+                t.transcode(input, output);
 
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(image2, "png",baos );
-            ostream.close();
-            long endTime = System.nanoTime();
+                BufferedImage image = ImageIO.read(new ByteArrayInputStream(ostream.toByteArray()));
+                ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace.getInstance(ColorSpace.CS_GRAY), null);
+                BufferedImage image2 = new BufferedImage(600,800, BufferedImage.TYPE_BYTE_GRAY );
+                colorConvert.filter(image, image2);
 
-            long duration = (endTime - startTime);
-            Logger.info("Tidbrukt=" + duration);
-            return ok(baos.toByteArray()).as("image/png");
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ImageIO.write(image2, "png",baos );
+                ostream.close();
+                long endTime = System.nanoTime();
+
+                long duration = (endTime - startTime);
+                Logger.info("Tidbrukt=" + duration);
+                return ok(baos.toByteArray()).as("image/png");
+            }
 
         } catch (Exception e) {
             Logger.error(e.toString());

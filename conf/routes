@@ -10,7 +10,8 @@ GET /bilde.png                      controllers.Application.bilde()
 GET /locale                         controllers.Application.locale()
 GET /google                         controllers.Application.google()
 GET /oslo                           controllers.Application.google()
-
+GET /setBilde/:id                   controllers.Application.setBilde(id:String)
+GET /hentBilde                      controllers.Application.hentBilde()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
