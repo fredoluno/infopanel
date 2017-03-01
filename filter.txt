@@ -1,0 +1,1 @@
+c_crop,e_brightness:100,g_face,h_800,w_600/e_grayscale/e_brightness:100

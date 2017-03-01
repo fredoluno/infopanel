@@ -117,10 +117,14 @@ public class Tjenester {
     }
 
 
-    public static void skrivFil(String fil)
+    public static void skrivBilde(String filinnhold)
     {
+        skrivFil(filinnhold, "bilde.txt");
+    }
+
+    private static void skrivFil(String fil, String filnavn) {
         try{
-            PrintWriter writer = new PrintWriter("bilde.txt", "UTF-8");
+            PrintWriter writer = new PrintWriter(filnavn, "UTF-8");
             writer.println(fil);
             writer.close();
         } catch (IOException e) {
@@ -128,19 +132,37 @@ public class Tjenester {
         }
     }
 
-    public static String lesFil(){
+    public static String lesBilde(){
 
-        try {
-            return new String(Files.readAllBytes(Paths.get("bilde.txt")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-       return "";
+        return lesFil("bilde.txt");
 
     }
 
+    private static String lesFil(String filnavn) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(filnavn)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static void setFilter(String filter)
+    {
+           skrivFil(filter, "filter.txt");
+    }
+
+    public static String lesFilter(){
+
+        return lesFil("filter.txt");
+
+    }
+
+
     public static InputStream getCloudinary(String bilde){
-        String bilde2 = "http://res.cloudinary.com/fredrik-hansen/image/upload/c_thumb,e_grayscale,g_face,h_800,w_600/"+ bilde + ".png"   ;
+        String filter = lesFilter().trim();
+        String bilde2 = "http://res.cloudinary.com/fredrik-hansen/image/upload/"+filter +"/"+ bilde.trim() + ".png"   ;
+//        String bilde2 = "http://res.cloudinary.com/fredrik-hansen/image/upload/c_thumb,e_grayscale,g_face,h_800,w_600/"+ bilde + ".png"   ;
         Logger.debug(PUBLIC_SVG_FOLDER + bilde2 + ".");
         return WS.url(bilde2).get().get().getBodyAsStream();
 

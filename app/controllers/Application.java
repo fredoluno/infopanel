@@ -4,8 +4,6 @@ package controllers;
 import logic.DiverseUtils;
 import logic.Tjenester;
 import models.*;
-import org.apache.batik.ext.awt.image.codec.imageio.PNGTranscoderImageIOWriteAdapter;
-import org.apache.batik.transcoder.TranscoderException;
 import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.image.PNGTranscoder;
 import org.apache.batik.transcoder.TranscoderInput;
@@ -13,19 +11,15 @@ import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.commons.io.IOUtils;
 
 import play.Logger;
-import play.data.format.Formats;
 import play.mvc.*;
-import play.api.Play;
-import scala.reflect.io.VirtualFile;
+
 import java.awt.Color;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.awt.image.BufferedImage;
 import java.awt.color.ColorSpace;
 
 import java.awt.image.ColorConvertOp;
-import java.net.URL;
 import java.text.DateFormat;
 import java.util.Locale;
 
@@ -76,16 +70,22 @@ public class Application extends Controller {
 
     public static Result setBilde(String id) throws IOException{
 
-        Tjenester.skrivFil(id);
+        Tjenester.skrivBilde(id);
+        Logger.error("skrivfil=" + id);
+        return ok("OK="+id);
+    }
+
+    public static Result setFilter(String id) throws IOException{
+
+        Tjenester.setFilter(id);
         Logger.error("skrivfil=" + id);
         return ok("OK="+id);
     }
     public static Result hentBilde() throws IOException{
-        String filtekst=Tjenester.lesFil();
+        String filtekst=Tjenester.lesBilde();
         Logger.error("filtekst=" + filtekst);
         if(!filtekst.trim().equals(""))   {
             Logger.error("adadas");
-            Tjenester.skrivFil("");
             return ok( IOUtils.toByteArray(Tjenester.getCloudinary(filtekst))).as("image/png");
         } else{
             return ok("Ikke noe bilde");
@@ -94,15 +94,17 @@ public class Application extends Controller {
 
     }
 
+
+
     public static Result bilde() throws IOException {
 
         try
         {
-            String filtekst=Tjenester.lesFil().trim();
+            String filtekst=Tjenester.lesBilde().trim();
             Logger.error("filtekst=" + filtekst);
             if(!filtekst.trim().equals(""))   {
                 Logger.error("adadas");
-                Tjenester.skrivFil("");
+                Tjenester.skrivBilde("");
                 return ok( IOUtils.toByteArray(Tjenester.getCloudinary(filtekst))).as("image/png");
             } else{
 
